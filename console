@@ -9,10 +9,8 @@ use Symfony\Component\Console\Application;
 $application = new Application();
 
 // dependency injection in case of this command. We are injecting the implementation
-$builder = new \App\Application\Service\ClientBuilder();
-$listBuilder = new \App\Application\Service\ClientListBuilder($builder);
-$xmlClientListReader = new \App\Infrastructure\Service\XMLClientListReader($listBuilder);
-$urlClientListReader =new \App\Infrastructure\Service\URLClientListReader($listBuilder);
+$xmlClientListReader = new \App\Infrastructure\Service\XMLClientListReader();
+$urlClientListReader =new \App\Infrastructure\Service\URLClientListReader();
 
 $csvClientListWriter = new \App\Infrastructure\Service\CSVClientListWriter();
 $application->add(new \App\Infrastructure\Command\ImportCommand(

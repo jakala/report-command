@@ -3,7 +3,7 @@ namespace App\Application\Response;
 
 class ClientListResponse
 {
-    private ClientResponse $list;
+    private array $list;
     public function __construct()
     {
         $this->list =[];

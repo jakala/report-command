@@ -20,6 +20,8 @@ class CSVClientListWriter implements ListWriter
         $this->writeSeparator($file, $separator);
         $this->writeData($file, $list, $format);
         fclose($file);
+
+        return true;
     }
 
     private function writeHeader($file, string $format)
