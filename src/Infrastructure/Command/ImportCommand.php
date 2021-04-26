@@ -22,6 +22,7 @@ set_error_handler(function($errno, $errstr) {
 class ImportCommand extends Command
 {
     protected static $defaultName='isalud:import';
+
     protected static string $URL = 'https://web.archive.org/web/20210414050626if_/https://jsonplaceholder.typicode.com/users';
     protected ListReader $xmlReader;
     protected ListReader $urlReader;

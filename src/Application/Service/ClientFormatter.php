@@ -3,7 +3,6 @@ namespace App\Application\Service;
 
 use App\Application\Response\ClientListResponse;
 use App\Domain\Entity\Client;
-use App\Domain\Entity\ClientList;
 
 class ClientFormatter
 {

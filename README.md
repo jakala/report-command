@@ -18,4 +18,13 @@ tambien tiene uno/varios parametros opcionales:
 - [-f | --file FILE]: hace referencia al archivo o archivos xml de tipo cliente para mezclarlos con los
 datos obtenidos de la url.
   
-## Errores controlados
+## Tests phpunit
+Una vez instalado los vendors, podemos ejecutar los tests con:
+```
+vendor/bin/phpunit
+```
+si queremos generar un informe de covertura de tests, podemos ejecutar:
+```
+vendor/bin/phpunit --coverage-html var/coverage tests
+``` 
+De esta manera, en la carpeta `var/coverage` tendremos una web con el informe de la covertura
