@@ -1,6 +1,7 @@
 <?php
 namespace App\Application\Service;
 
+use App\Application\Response\ClientListResponse;
 use App\Domain\Entity\Client;
 use App\Domain\Entity\ClientList;
 
@@ -11,16 +12,16 @@ class ClientFormatter
     private int $phone;
     private int $company;
 
-    private ClientList $clientList;
+    private ClientListResponse $list;
 
     private string $format;
     private string $separator;
 
-    public function __construct(ClientList $clientList)
+    public function __construct(ClientListResponse $list)
     {
         $this->format = $this->separator = "";
         $this->name = $this->email = $this->phone = $this->company = 0;
-        $this->clientList = $clientList;
+        $this->list = $list;
 
         $this->configurate();
     }
@@ -28,11 +29,11 @@ class ClientFormatter
     private function configurate(): void
     {
         /** @var Client $client */
-        foreach($this->clientList->getList() as $client) {
-            $this->name = $this->bigger($client->getName()->value(), $this->name);
-            $this->email = $this->bigger($client->getEmail()->value(), $this->email);
-            $this->phone = $this->bigger($client->getPhone()->value(), $this->phone);
-            $this->company = $this->bigger($client->getCompany()->value(), $this->company);
+        foreach($this->list->value() as $item) {
+            $this->name = $this->bigger($item['name'], $this->name);
+            $this->email = $this->bigger($item['email'], $this->email);
+            $this->phone = $this->bigger($item['phone'], $this->phone);
+            $this->company = $this->bigger($item['company'], $this->company);
         }
 
         $this->format =  "|%-".$this->name."s".

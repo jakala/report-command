@@ -1,9 +1,9 @@
 <?php
 namespace App\Domain\Interface;
 
-use App\Domain\Entity\ClientList;
+use App\Application\Response\ClientListResponse;
 
 interface ListWriter
 {
-    public function write(ClientList $list, string $file) : bool;
+    public function write(ClientListResponse $list, string $file) : ?bool;
 }

@@ -1,37 +1,36 @@
 <?php
 namespace App\Infrastructure\Service;
 
-use App\Application\Service\ClientListBuilder;
-use App\Domain\Entity\ClientList;
+use App\Application\Response\ClientListResponse;
+use App\Application\Response\ClientResponse;
+use App\Domain\Entity\Client;
 use App\Domain\Interface\ListReader;
+use App\Domain\ValueObject\Company;
+use App\Domain\ValueObject\Email;
+use App\Domain\ValueObject\Name;
+use App\Domain\ValueObject\Phone;
 use Symfony\Component\DomCrawler\Crawler;
 
 class XMLClientListReader implements ListReader
 {
-    /** @var ClientListBuilder $builder */
-    private ClientListBuilder $builder;
-
-    public function __construct(ClientListBuilder $builder)
+     public function read(string $list): ClientListResponse
     {
-        $this->builder = $builder;
-    }
-
-    public function read(string $list): ClientList
-    {
+        $response = new ClientListResponse();
         $crawler = new Crawler(file_get_contents($list));
         $items = $crawler->children();
-        $result = [];
 
         /** @var \DOMElement $item */
         foreach($items as $item) {
-            $result[] = [
-                'name' => $item->getAttribute('name'),
-                'email' => $item->nodeValue,
-                'phone' => $item->getAttribute('phone'),
-                'company' => $item->getAttribute('company')
-            ];
+            $client = new Client(
+                new Name($item->getAttribute('name')),
+                new Email($item->nodeValue),
+                new Phone($item->getAttribute('phone')),
+                new Company($item->getAttribute('company'))
+            );
+            $clientResponse = new ClientResponse($client);
+            $response->addClientResponse($clientResponse);
         }
 
-        return $this->builder->__invoke($result);
+        return $response;
     }
 }
