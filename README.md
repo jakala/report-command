@@ -9,7 +9,7 @@ y por otra parte, de archivos xml.
  - instalar vendors con `composer install`
 ## Uso
 ```
-./console isalud:import [-f|--file FILE] [--] <output-file>
+./console client:export [-f|--file FILE] [--] <output-file>
 ```
 Este comando requiere un parametro obligatorio:
 - <output-file>: es el nombre del archivo destino tipo csv en el que se vuelca la información.
