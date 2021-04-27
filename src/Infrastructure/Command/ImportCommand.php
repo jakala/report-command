@@ -23,7 +23,7 @@ class ImportCommand extends Command
 {
     protected static $defaultName='isalud:import';
 
-    protected static string $URL = 'https://web.archive.org/web/20210414050626if_/https://jsonplaceholder.typicode.com/users';
+    protected const URL = 'https://web.archive.org/web/20210414050626if_/https://jsonplaceholder.typicode.com/users';
     protected ListReader $xmlReader;
     protected ListReader $urlReader;
     protected ListWriter $csvWriter;
@@ -59,7 +59,6 @@ class ImportCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $io = new SymfonyStyle($input, $output);
         // get Argument and Options
 
         $fileOutput = $input->getArgument('output-file');
@@ -74,8 +73,8 @@ class ImportCommand extends Command
                 $fileClientListResponse = $this->readFiles($files);
                 $data->mergeClientListResponse($fileClientListResponse);
             } catch(FileNotFoundException $e) {
-                $io->getErrorStyle()->error($e->getDetails());
-                die();
+                $output->writeln($e->getDetails());
+                return 1;
             }
         }
         // escribimos el csv en $fileOutput
@@ -93,14 +92,14 @@ class ImportCommand extends Command
     {
         $resultClientList= new ClientListResponse();
         foreach($files as $file) {
-            $clientList = $this->xmlReader->read($file);
-            $resultClientList->mergeClientListResponse($clientList);
+            $list = $this->xmlReader->read($file);
+            $resultClientList->mergeClientListResponse($list);
         }
         return $resultClientList;
     }
 
     private function readUrl(): ClientListResponse
     {
-        return $this->urlReader->read(self::$URL);
+        return $this->urlReader->read(self::URL);
     }
 }

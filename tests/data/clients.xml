@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<readings>
+	<reading clientID="1" name="client 1" phone="463-170-9623" company="company 1">test1@email.com</reading>
+	<reading clientID="2" name="client 2" phone="493-170-9623" company="company 2">test2@email.com</reading>
+</readings>
