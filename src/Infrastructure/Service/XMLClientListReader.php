@@ -25,12 +25,12 @@ class XMLClientListReader implements ListReader
             $content = file_get_contents($list);
             $crawler = new Crawler($content);
             $items = $crawler->children();
-        } catch(\Throwable $e) {
+        } catch (\Throwable $e) {
             throw new FileNotFoundException(sprintf("file '%s' not exists.", $list));
         }
 
         /** @var \DOMElement $item */
-        foreach($items as $item) {
+        foreach ($items as $item) {
             $client = new Client(
                 new Name($item->getAttribute('name')),
                 new Email($item->nodeValue),

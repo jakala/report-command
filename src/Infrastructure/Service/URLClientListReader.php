@@ -19,7 +19,7 @@ class URLClientListReader implements ListReader
         $list = $crawler->filter('body > p')->text();
         $items = json_decode($list, true);
         $response = new ClientListResponse();
-        foreach($items as $item) {
+        foreach ($items as $item) {
             $client = new Client(
                 new Name($item['name']),
                 new Email($item['email']),

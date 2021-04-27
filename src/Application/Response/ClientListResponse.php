@@ -22,7 +22,7 @@ class ClientListResponse
     public function mergeClientListResponse(ClientListResponse $listResponse): void
     {
         /** @var ClientResponse $response */
-        foreach($listResponse->getList() as $response) {
+        foreach ($listResponse->getList() as $response) {
             $this->addClientResponse($response);
         }
     }
@@ -31,7 +31,7 @@ class ClientListResponse
     {
         $result = [];
         /** @var ClientResponse $response */
-        foreach($this->list as $response) {
+        foreach ($this->list as $response) {
             $result[] = $response->value();
         }
 

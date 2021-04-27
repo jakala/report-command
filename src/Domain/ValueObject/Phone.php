@@ -24,6 +24,5 @@ class Phone extends StringValueObject implements Validable
         //if(!is_numeric($first) || !is_numeric($second) || !is_numeric($third)) {
         //    throw new WrongPhoneNumberException();
         //}
-
     }
 }

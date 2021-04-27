@@ -37,7 +37,7 @@ class CSVClientListWriter implements ListWriter
     private function writeData($file, ClientListResponse $list, string $format)
     {
         /** @var array $client */
-        foreach($list->value() as $client) {
+        foreach ($list->value() as $client) {
             $out = sprintf($format, $client['name'], $client['email'], $client['phone'], $client['company']);
             fputs($file, $out);
         }

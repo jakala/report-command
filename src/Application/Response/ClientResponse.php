@@ -2,7 +2,6 @@
 
 namespace App\Application\Response;
 
-
 use App\Domain\Entity\Client;
 
 class ClientResponse

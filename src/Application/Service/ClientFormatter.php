@@ -28,7 +28,7 @@ class ClientFormatter
     private function configurate(): void
     {
         /** @var Client $client */
-        foreach($this->list->value() as $item) {
+        foreach ($this->list->value() as $item) {
             $this->name = $this->bigger($item['name'], $this->name);
             $this->email = $this->bigger($item['email'], $this->email);
             $this->phone = $this->bigger($item['phone'], $this->phone);

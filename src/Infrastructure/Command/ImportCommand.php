@@ -12,10 +12,9 @@ use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 
-set_error_handler(function($errno, $errstr) {
-    throw new \Exception( $errstr, $errno);
+set_error_handler(function ($errno, $errstr) {
+    throw new \Exception($errstr, $errno);
 }, E_WARNING);
 
 
@@ -45,8 +44,8 @@ class ImportCommand extends Command
 
         $this->setDefinition(
             new InputDefinition([
-                new InputArgument('output-file', InputArgument::REQUIRED,'name of the output file'),
-                new InputOption('file','f', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'File to read'),
+                new InputArgument('output-file', InputArgument::REQUIRED, 'name of the output file'),
+                new InputOption('file', 'f', InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY, 'File to read'),
             ])
         );
         parent::configure();
@@ -72,7 +71,7 @@ class ImportCommand extends Command
             try {
                 $fileClientListResponse = $this->readFiles($files);
                 $data->mergeClientListResponse($fileClientListResponse);
-            } catch(FileNotFoundException $e) {
+            } catch (FileNotFoundException $e) {
                 $output->writeln($e->getDetails());
                 return 1;
             }
@@ -88,10 +87,10 @@ class ImportCommand extends Command
      * @return ClientListResponse
      * @throws FileNotFoundException
      */
-    private function readFiles(array $files ): ClientListResponse
+    private function readFiles(array $files): ClientListResponse
     {
         $resultClientList= new ClientListResponse();
-        foreach($files as $file) {
+        foreach ($files as $file) {
             $list = $this->xmlReader->read($file);
             $resultClientList->mergeClientListResponse($list);
         }
