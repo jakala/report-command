@@ -12,10 +12,10 @@ y por otra parte, de archivos xml.
 ./console client:export [-f|--file FILE] [--] <output-file>
 ```
 Este comando requiere un parametro obligatorio:
-- <output-file>: es el nombre del archivo destino tipo csv en el que se vuelca la información.
+- `<output-file>`: es el nombre del archivo destino tipo csv en el que se vuelca la información.
 
 tambien tiene uno/varios parametros opcionales:
-- [-f | --file FILE]: hace referencia al archivo o archivos xml de tipo cliente para mezclarlos con los
+- `[-f | --file FILE]`: hace referencia al archivo o archivos xml de tipo cliente para mezclarlos con los
 datos obtenidos de la url.
   
 ## Tests phpunit
